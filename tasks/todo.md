@@ -45,4 +45,4 @@ privat archiviert; das öffentliche Repository beginnt mit dem generischen Stand
 ## Raumcode-Aktualisierung
 
 - [x] Achtstellige Codes mit führender Null unterstützen; privaten Code aktualisieren.
-- [ ] Regressionstest, Produktion veröffentlichen und neuen/alten Zugang prüfen.
+- [x] 28 Tests und TypeScript bestanden; Produktionsbuild veröffentlicht. Neuer Zugang und Wiederherstellung erfolgreich, alter Code und Eingabe ohne führende Null mit 401 abgewiesen.
