@@ -49,6 +49,21 @@ beforeEach(() => {
   mocks.presignUrl.mockResolvedValue({ presignedUrl: "https://private.example/film.mp4?test-signature" });
 });
 describe("private lobby access", () => {
+  it("accepts an eight-digit code with its leading zero and revokes previous access", async () => {
+    const previousAccess = issueAccess();
+    const previousMembership = issueMembership("A").token;
+    const numericCode = "01234567";
+    vi.stubEnv("ROOM_CODE_HASH", createHash("sha256").update(numericCode).digest("hex"));
+    expect(validCode(numericCode)).toBe(true);
+    expect(validCode(numericCode.slice(1))).toBe(false);
+    expect(validCode("01234568")).toBe(false);
+    expect(validCode(CODE)).toBe(false);
+    expect(() => verifyAccess(previousAccess)).toThrow();
+    expect(() => verifyMembership(previousMembership)).toThrow();
+    expect((await access(request("/api/access", { code: numericCode }))).status).toBe(200);
+    expect((await access(request("/api/access", { code: CODE }))).status).toBe(401);
+  });
+
   it("reveals no metadata anonymously, with a wrong code, or from a foreign origin", async () => {
     const anonymous = await getAccess(request("/api/access"));
     expect(anonymous.status).toBe(401);

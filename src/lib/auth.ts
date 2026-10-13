@@ -13,7 +13,7 @@ function equal(a: Buffer, b: Buffer): boolean { return a.length === b.length && 
 export function validCode(code: string): boolean {
   const normalized = normalizeCode(code);
   const digest = createHash("sha256").update(normalized).digest();
-  return normalized.length >= 16 && equal(digest, Buffer.from(roomCodeHash(), "hex"));
+  return normalized.length >= 8 && equal(digest, Buffer.from(roomCodeHash(), "hex"));
 }
 export function issueAccess(now = Date.now()): string {
   const access = { v: 1, purpose: "lobby", id: randomUUID(), exp: now + MEMBERSHIP_MS, aud: namespace(), invitation: roomCodeHash() };

@@ -41,3 +41,8 @@ ohne Überlauf geprüft; Abmelden entfernt die private Ansicht. Testplätze sind
 Der geprüfte Produktionsbuild wurde veröffentlicht. Keine 5xx-Fehler im abgefragten
 Logzeitraum. Hobby ist aktiv, ohne Probeabo oder Upgrade. Alte Quellhistorie ist
 privat archiviert; das öffentliche Repository beginnt mit dem generischen Stand.
+
+## Raumcode-Aktualisierung
+
+- [x] Achtstellige Codes mit führender Null unterstützen; privaten Code aktualisieren.
+- [ ] Regressionstest, Produktion veröffentlichen und neuen/alten Zugang prüfen.
