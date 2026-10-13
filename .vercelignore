@@ -1,0 +1,10 @@
+.git/
+node_modules/
+.next/
+.vercel/
+.local/
+.env*
+*.tsbuildinfo
+outputs/
+*.mp4
+test-results/
